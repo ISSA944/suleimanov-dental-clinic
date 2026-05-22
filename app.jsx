@@ -943,7 +943,7 @@ function CtaBanner() {
           <p className="cta-banner-text">
             Первичная консультация с диагностикой и планом лечения — бесплатно для новых пациентов до конца месяца.
           </p>
-          <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+          <div className="cta-banner-btns">
             <a href="#book" className="btn btn-primary">Записаться <span className="btn-arrow" /></a>
             <a href="https://t.me/sdcclinic_bot" target="_blank" rel="noopener" className="btn btn-ghost">
               Telegram-бот <span className="btn-arrow" />
