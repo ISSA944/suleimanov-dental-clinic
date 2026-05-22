@@ -184,10 +184,8 @@ function Header() {
     { id: "contact", label: "Контакты" },
   ];
 
-  const closeMenu = () => setMenuOpen(false);
-
   return (
-    <React.Fragment>
+    <>
       <header className={"header" + (scrolled ? " is-scrolled" : "")}>
         <a href="#hero" className="header-pill header-pill-brand" aria-label="Suleimenov Dental Clinic">
           <img src="assets/logo.png" alt="" className="header-brand-mark" />
@@ -214,42 +212,46 @@ function Header() {
           </a>
         </div>
         <button
-          className={"burger" + (menuOpen ? " is-open" : "")}
-          onClick={() => setMenuOpen(o => !o)}
-          aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
-          aria-expanded={menuOpen}
+          className={"header-burger" + (menuOpen ? " is-open" : "")}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Меню"
         >
-          <span />
-          <span />
           <span />
         </button>
       </header>
 
-      <div className={"mobile-menu" + (menuOpen ? " is-open" : "")} aria-hidden={!menuOpen}>
-        <nav className="mobile-nav">
+      <div className={"mobile-menu" + (menuOpen ? " is-open" : "")}>
+        <nav className="mobile-menu-nav">
           {navItems.map((it) => (
-            <a
-              key={it.id}
-              href={"#" + it.id}
-              className="mobile-nav-link"
-              onClick={closeMenu}
-            >
+            <a key={it.id} href={"#" + it.id} onClick={() => setMenuOpen(false)}>
               {it.label}
             </a>
           ))}
         </nav>
-        <div className="mobile-menu-foot">
-          <a href="tel:+77182000000" className="mobile-phone">+7 718 200 00 00</a>
-          <a href="https://t.me/sdcclinic_bot" target="_blank" rel="noopener" className="mobile-tg-link">
-            <TgIcon style={{ width: 17, height: 17 }} />
-            Telegram-бот
-          </a>
-          <a href="#book" className="btn btn-primary mobile-book-btn" onClick={closeMenu}>
+        <div className="mobile-menu-actions">
+          <a href="#book" className="btn btn-primary" onClick={() => setMenuOpen(false)}>
             Записаться <span className="btn-arrow" />
           </a>
+          <a href="https://t.me/sdcclinic_bot" target="_blank" rel="noopener" className="btn btn-ghost" onClick={() => setMenuOpen(false)}>
+            Telegram-бот <span className="btn-arrow" />
+          </a>
+        </div>
+        <div className="mobile-menu-contact">
+          <a href="tel:+77182000000" className="mobile-menu-contact-row">
+            <strong>Телефон</strong>
+            +7 718 200 00 00
+          </a>
+          <div className="mobile-menu-contact-row">
+            <strong>Адрес</strong>
+            г. Экибастуз, ул. Ауэзова, 54
+          </div>
+          <div className="mobile-menu-contact-row">
+            <strong>Часы</strong>
+            Пн–Пт 09:00–19:00 · Сб 09:00–13:00
+          </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 
